@@ -1,4 +1,4 @@
-function AmazonSuggestController($scope) {
+function AmazonSuggestController($scope, $window) {
     $scope.items = [];
 
     $scope.search = function(query) {
@@ -12,5 +12,19 @@ function AmazonSuggestController($scope) {
                 $scope.items = items;
             });
         });
+    };
+
+    $scope.searchKeyPress = function(item, event) {
+        if(event.keyCode == 13) {
+            $scope.go(item);
+        }
+
+    };
+
+    $scope.go = function(item) {
+        if(!item) {
+            return;
+        }
+        $window.parent.location.href = "https://www.amazon.com/s/?tag=robdresblo-20&field-keywords=" + item;
     };
 }

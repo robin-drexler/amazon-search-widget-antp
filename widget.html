@@ -13,10 +13,10 @@
 <body ng-controller="AmazonSuggestController">
 
 <div id="content">
-    <input autocomplete="off" type="text" placeholder="Search Amazon" id="search" ng-model="query"  ng-change="search(query)" class="search">
+    <input autocomplete="off" type="text" placeholder="Search Amazon" id="search" ng-model="query"  ng-change="search(query)" ng-keypress="searchKeyPress(query, $event)" class="search">
     <div class="mv-list">
         <div class="item"  ng-repeat="item in items">
-            <a class="link" target="_parent" ng-href="https://www.amazon.com/s/?field-keywords={{item}}&tag=robdresblo-20">
+            <a class="link" target="_parent" ng-click="go(item)">
                <div class="title">{{item}}</div>
             </a>
         </div>
