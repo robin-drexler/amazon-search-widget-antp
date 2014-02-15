@@ -25,11 +25,28 @@ chrome.extension.onMessageExternal.addListener(function (request, sender, sendRe
     }
 });
 
+
+function retrieveItems(query, sendResponse) {
+    var amazonSearchUrl = 'http://completion.amazon.com/search/complete?search-alias=aps&client=amazon-search-ui&mkt=1&q={query}';
+    var xhr = new XMLHttpRequest();
+
+    //todo error handling
+    xhr.onload = function () {
+        var result = JSON.parse(this.responseText);
+        var items = result[1];
+
+        sendResponse(items);
+    };
+
+    xhr.open("get", amazonSearchUrl.replace('{query}', query), true);
+    xhr.send();
+}
+
+
 chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
+    console.log('request');
     if (request.purpose === "get") {
-        chrome.topSites.get(function (sites) {
-            sendResponse({sites: sites});
-        });
+        retrieveItems(request.query, sendResponse);
     }
 
     if (request.purpose === "goto") {

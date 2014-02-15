@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html ng-app ng-csp>
 <head>
+    <meta charset="utf-8">
     <script type="text/javascript" src="js/lib/jquery.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.hotkeys.js"></script>
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
     <script type="text/javascript" src="js/Controller/MostVisitedController.js"></script>
     <script type="text/javascript" src="js/widget.js"></script>
@@ -10,21 +10,22 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 
-<body ng-controller="MostVisitedController">
+<body ng-controller="AmazonSuggestController">
 
 <div id="content">
-    <input autocomplete="off" type="text" placeholder="Search" id="search" ng-model="query" class="search">
+    <input autocomplete="off" type="text" placeholder="Search Amazon" id="search" ng-model="query"  ng-change="search(query)" class="search">
     <div class="mv-list">
-        <div class="item"  ng-repeat="site in sites | filter:query">
-            <a class="link" ng-href="{{site.url}}">
-                <img class="favicon" ng-src="http://www.google.com/s2/favicons?domain={{site.faviconURL}}"></img>
-                <div class="title">{{site.title}}</div>
+        <div class="item"  ng-repeat="item in items">
+            <a class="link" target="_parent" ng-href="https://www.amazon.com/s/?field-keywords={{item}}&tag=robdresblo-20">
+               <div class="title">{{item}}</div>
             </a>
         </div>
+
+        <div ng-if="!query.length" style="margin-top: 45px; text-align: center">
+            ↑ Start searching above↑
+        </div>
     </div>
-
 </div>
-
 
 
 </body>

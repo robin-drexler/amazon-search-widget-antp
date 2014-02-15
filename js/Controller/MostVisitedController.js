@@ -1,16 +1,16 @@
-function MostVisitedController($scope) {
-    chrome.extension.sendMessage({purpose:"get"}, function (response) {
-        var sites = response.sites;
+function AmazonSuggestController($scope) {
+    $scope.items = [];
 
-        sites.map(function(site) {
-            site.faviconURL = site.url.split('/')[2];
+    $scope.search = function(query) {
+        if(!query.length) {
+            $scope.items = [];
+            return;
+        }
+
+        chrome.extension.sendMessage({purpose:"get", query: query}, function (items) {
+            $scope.$apply(function () {
+                $scope.items = items;
+            });
         });
-
-        $scope.sites = sites;
-        $scope.$apply();
-    });
-
-    $scope.changed = function(item) {
-        alert(item);
-    }
+    };
 }
