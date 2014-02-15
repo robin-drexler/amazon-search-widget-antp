@@ -44,17 +44,8 @@ function retrieveItems(query, sendResponse) {
 
 
 chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log('request');
     if (request.purpose === "get") {
         retrieveItems(request.query, sendResponse);
-    }
-
-    if (request.purpose === "goto") {
-        chrome.tabs.query({active: true, currentWindow:true}, function (tabs) {
-            var tab = tabs[0];
-
-            chrome.tabs.update(tab.id, {url: request.url});
-        });
     }
 
     return true;
