@@ -16,7 +16,7 @@
     <input autocomplete="off" type="text" placeholder="Search Amazon" id="search" ng-model="query"  ng-change="search(query)" ng-keypress="searchKeyPress(query, $event)" class="search">
     <div class="mv-list">
         <div class="item"  ng-repeat="item in items">
-            <a class="link" target="_parent" ng-click="go(item)">
+            <a class="link" href="javascript:;" target="_parent" ng-click="go(item)">
                <div class="title">{{item}}</div>
             </a>
         </div>

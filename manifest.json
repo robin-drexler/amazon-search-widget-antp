@@ -2,9 +2,9 @@
     "background":{
         "scripts":["js/background.js"]
     },
-    "version":"2013.6.8",
-    "name":"Amazon Suggest Widget [ANTP]",
-    "description":"Displays your top sites in a widget.",
+    "version":"2014.15.2.1",
+    "name":"Amazon Autocomplete Search Widget [ANTP]",
+    "description":"Search Amazon.com directly in your Awesome New Tab Page. With Autocomplete!",
     "icons":{
         "128":"icon.png"
     },
